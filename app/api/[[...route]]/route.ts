@@ -11,3 +11,4 @@ app.get('/search',(c) => {
 
 
 export const GET = handle(app)
+export default app as never
