@@ -9,6 +9,7 @@ import {
   CommandList,
 } from '@/components/ui/command'
 import { useEffect, useState } from 'react'
+import { Switch } from '@/components/ui/switch'
 
 export default function Home() {
   const [input, setInput] = useState<string>('')
@@ -16,13 +17,15 @@ export default function Home() {
     results: string[]
     duration: number
   }>()
+  const [usePostgres, setUsePostgres] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
       if (!input) return setSearchResults(undefined)
       
       try {
-        const res = await fetch(`/api/search?q=${input}`)
+        const endpoint = usePostgres ? '/api/search-postgres' : '/api/search'
+        const res = await fetch(`${endpoint}?q=${input}`)
         if (!res.ok) {
           throw new Error('Network response was not ok')
         }
@@ -39,7 +42,7 @@ export default function Home() {
     }
 
     fetchData()
-  }, [input])
+  }, [input, usePostgres])
 
   return (
     <main className='h-screen w-screen grainy'>
@@ -49,6 +52,16 @@ export default function Home() {
           A high-performance API built with Hono, Next.js and Cloudflare. <br />{' '}
           Type a query below and get your results in milliseconds.
         </p>
+
+        <div className='flex items-center gap-2'>
+          <span>Redis</span>
+          <Switch
+            checked={usePostgres}
+            onCheckedChange={setUsePostgres}
+            className="bg-blue-600"
+          />
+          <span>Postgres</span>
+        </div>
 
         <div className='max-w-md w-full'>
           <Command>
@@ -81,7 +94,7 @@ export default function Home() {
                   <div className='h-px w-full bg-zinc-200' />
                   <p className='p-2 text-xs text-zinc-500'>
                     Found {searchResults.results.length} results in{' '}
-                    {searchResults.duration?.toFixed(0) || 'N/A'}ms
+                    {searchResults.duration?.toFixed(0) || 'N/A'}ms using {usePostgres ? 'Postgres' : 'Redis'}
                   </p>
                 </>
               ) : null}
