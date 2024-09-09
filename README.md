@@ -1,7 +1,11 @@
 # Project Name
 
 ## Project Description
-Briefly describe your project here. This project is built using Next.js and includes Redis and Postgres for data management.
+This project is built using Next.js and includes Redis and Postgres and Hono Cloudflare for data management.
+
+## Why Needed
+
+![Compare](./compare.png)
 
 ## Architecture
 
