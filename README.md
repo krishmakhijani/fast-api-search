@@ -37,8 +37,8 @@ Briefly describe your project here. This project is built using Next.js and incl
     ```env
     # .env
     DATABASE_URL=postgres://user:password@localhost:5432/database
-    REDIS_URL=redis://localhost:6379
-    API_KEY=your_api_key
+    UPSTASH_REDIS_REST_URL=""
+    UPSTASH_REDIS_REST_TOKEN=""
     ```
 
 4. Start the development server:
@@ -83,7 +83,8 @@ Content-Type: application/json
 ```json
 {
 "message": "Resource created successfully"
-}```
+}
+```
 
 
 ## Learn More
