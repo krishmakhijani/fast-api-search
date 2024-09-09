@@ -1,24 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Name
 
-## Getting Started
+## Project Description
+Briefly describe your project here. This project is built using Next.js and includes Redis and Postgres for data management.
 
-First, run the development server:
+## Architecture
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Redis Architecture
+![Redis Architecture](https://github.com/user-attachments/assets/e6ee63c2-b566-48b6-9e2e-2b8be40fbf8f)
+
+### Postgres Architecture
+![Postgres Architecture](https://github.com/user-attachments/assets/d15340a8-2dbb-4c72-bb2e-5eca152fb908)
+
+## Environment Setup
+
+### Prerequisites
+- Node.js
+- Docker
+- Redis
+- Postgres
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/your-repo.git
+    cd your-repo
+    ```
+
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+3. Set up environment variables:
+    Create a `.env` file in the root directory and add the following variables:
+    ```env
+    # .env
+    DATABASE_URL=postgres://user:password@localhost:5432/database
+    REDIS_URL=redis://localhost:6379
+    API_KEY=your_api_key
+    ```
+
+4. Start the development server:
+    ```sh
+    npm run dev
+    ```
+
+## API Documentation
+
+### Endpoints
+
+#### GET /api/v1/resource
+Fetches a list of resources.
+
+**Request:**
+
+```json
+{
+"data": "sample data"
+}
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### POST /api/v1/resource
+Creates a new resource.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Request:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```http
+POST /api/v1/resource HTTP/1.1
+Host: your-api-host
+Content-Type: application/json
+{
+"key": "value"
+}
+
+```
+
+ 
+**Response:**
+
+```json
+{
+"message": "Resource created successfully"
+}```
+
 
 ## Learn More
 
